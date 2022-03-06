@@ -255,8 +255,12 @@
     text-decoration: line-through;
 }
 
-.github-pr-file.github-pr-file-viewed {
-    background-color: '#E6FFED';
+.github-pr-item-viewed {
+    color: #ccc !important;
+}
+
+.github-pr-item-viewed > a {
+    color: #ccc !important;
 }
 
 .github-pr-file > span {
@@ -294,11 +298,6 @@
     margin-left: 3px;
     position: relative;
     top: 2px;
-}
-
-.github-pr-file-checkmark {
-    color: #2cbe4e;
-    margin-left: 5px;
 }
 
 .github-pr-folder-count-label {

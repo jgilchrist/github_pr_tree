@@ -44,7 +44,7 @@ class File extends React.Component {
       'github-pr-file',
       isVisible && 'github-pr-file-highlight',
       isDeleted && 'github-pr-file-deleted',
-      isViewed && 'github-pr-file-viewed'
+      isViewed && 'github-pr-item-viewed'
     ].filter(Boolean).join(' ')
 
     const index = filter ? (name.toLowerCase() || '').indexOf(filter.toLowerCase()) : -1
