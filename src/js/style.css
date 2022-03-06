@@ -255,6 +255,10 @@
     text-decoration: line-through;
 }
 
+.github-pr-file.github-pr-file-viewed {
+    background-color: '#E6FFED';
+}
+
 .github-pr-file > span {
     margin-right: 4px;
 }
