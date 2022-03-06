@@ -32,7 +32,7 @@ class Folder extends React.Component {
   }
 
   render () {
-    const { children, nodeLabel, isViewed, fileCount, filter } = this.props
+    const { children, nodeLabel, isViewed, fileCount, filter, hideViewed } = this.props
     const { options = {} } = this.state
     const fileCountLabel = fileCount > 1 ? 'files' : 'file'
 
@@ -53,9 +53,13 @@ class Folder extends React.Component {
     )
 
     return (
-      <TreeView nodeLabel={display} defaultCollapsed={false}>
-        {children}
-      </TreeView>
+      isViewed && hideViewed
+        ? null
+        : (
+          <TreeView nodeLabel={display} defaultCollapsed={false}>
+            {children}
+          </TreeView>
+          )
     )
   }
 }
