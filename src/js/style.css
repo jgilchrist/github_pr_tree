@@ -232,9 +232,15 @@
     transform: none;
 }
 
+.tree-view_children {
+    border-left: 1px solid #eee;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
 .github-pr-file {
     white-space: nowrap;
-    padding-left: 18px;
+    padding-left: 8px;
     padding-top: 2px;
     padding-bottom: 2px;
     background: transparent;
