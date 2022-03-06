@@ -14,16 +14,7 @@ export const createRootElement = () => {
 }
 
 const sorter = (a, b) => {
-  const isFileA = Boolean(a.href)
-  const isFileB = Boolean(b.href)
-
-  if (isFileA === isFileB) {
-    return (b.nodeLabel > a.nodeLabel) ? -1 : ((a.nodeLabel > b.nodeLabel) ? 1 : 0)
-  } else if (isFileA && !isFileB) {
-    return -1
-  } else {
-    return 1
-  }
+  return a.idx - b.idx
 }
 
 const parseChangeNumber = (n) => {
@@ -116,9 +107,9 @@ export const folderConcat = (node) => {
 
 export const createFileTree = (filter = EMPTY_FILTER) => {
   const fileInfo = [...document.querySelectorAll('.file-info > a')]
-  const files = fileInfo.map(({ title, href }) => {
+  const files = fileInfo.map(({ title, href }, idx) => {
     title = getCurrentFileLocation(title)
-    return { title, href, parts: title.split('/') }
+    return { title, href, parts: title.split('/'), idx }
   })
   const count = fileInfo.filter(({ href }) => href && href.includes('#diff')).length
   const tree = {
@@ -127,7 +118,7 @@ export const createFileTree = (filter = EMPTY_FILTER) => {
     diffElements: []
   }
 
-  files.forEach(({ title, parts, href }) => {
+  files.forEach(({ title, parts, href, idx }) => {
     let location = tree
 
     const hrefSplit = href.split('#')
@@ -146,6 +137,7 @@ export const createFileTree = (filter = EMPTY_FILTER) => {
             const isDeleted = isDeletedForFileId(fileId)
             tree.diffElements.push(diffElement)
             node = {
+              idx,
               nodeLabel: part,
               list: [],
               href: (index === parts.length - 1) ? href : null,
