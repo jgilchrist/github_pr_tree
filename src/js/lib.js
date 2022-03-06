@@ -16,12 +16,13 @@ export const createRootElement = () => {
 const sorter = (a, b) => {
   const isFileA = Boolean(a.href)
   const isFileB = Boolean(b.href)
+
   if (isFileA === isFileB) {
     return (b.nodeLabel > a.nodeLabel) ? -1 : ((a.nodeLabel > b.nodeLabel) ? 1 : 0)
   } else if (isFileA && !isFileB) {
-    return 1
-  } else {
     return -1
+  } else {
+    return 1
   }
 }
 
