@@ -267,10 +267,17 @@
     margin-right: 4px;
 }
 
-.github-pr-file > span.changes > .number {
-  color: var(--color-fg-muted, var(--bgpr-file-changes-color));
+.github-pr-file > span.changes {
   margin-left: 8px;
   margin-right: 4px;
+}
+
+.github-pr-file > span.changes > .changes-additions {
+  color: #2da44e;
+}
+
+.github-pr-file > span.changes > .changes-deletions {
+  color: #cf222e;
 }
 
 .github-pr-file span.addition {

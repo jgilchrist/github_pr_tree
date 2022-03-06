@@ -11,12 +11,26 @@ const DiffStats = ({ diffStats }) => {
   for (let i = 0; i < Math.log(diffStats.deletions); i++) {
     changeBlocks.push(<DeletionBlock key={`deletion-${i}`} />)
   }
+
   const changeNumber = (diffStats.additions + diffStats.deletions).toLocaleString()
 
   return (
     <span className='changes'>
-      <span className='number'>{changeNumber}</span>
-      {changeBlocks}
+      {
+        diffStats.additions
+          ? <span className='changes-additions'>+{diffStats.additions}</span>
+          : null
+      }
+      {
+        changeNumber
+          ? <span> </span>
+          : null
+      }
+      {
+        diffStats.deletions
+          ? <span className='changes-deletions'>-{diffStats.deletions}</span>
+          : null
+      }
     </span>
   )
 }
