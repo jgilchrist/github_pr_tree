@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
 
-const Actions = ({ filter, filterFiles, onFullWidth, onOptions, onClose, onReloadTree, onShowViewed, onHideViewed }) => {
+const Actions = ({ filter, filterFiles, onFullWidth, onOptions, onClose, onReloadTree, onShowViewed, onHideViewed, onShowFilesWithoutComments, onHideFilesWithoutComments }) => {
   const [isViewedHidden, setIsViewedHidden] = useState(false)
+  const [isFilesWithoutCommentsHidden, setIsFilesWithoutCommentsHidden] = useState(false)
 
   const handleHideViewed = () => {
     if (isViewedHidden) onShowViewed()
     else onHideViewed()
 
     setIsViewedHidden(!isViewedHidden)
+  }
+
+  const handleHideFilesWithoutComments = () => {
+    if (isFilesWithoutCommentsHidden) onShowFilesWithoutComments()
+    else onHideFilesWithoutComments()
+
+    setIsFilesWithoutCommentsHidden(!isFilesWithoutCommentsHidden)
   }
 
   return (
@@ -33,6 +41,17 @@ const Actions = ({ filter, filterFiles, onFullWidth, onOptions, onClose, onReloa
           </span>
         </button>
       </div>
+
+      <div className='actions-small-button'>
+        <button onClick={handleHideFilesWithoutComments} className='settings-button'>
+          <span className='tooltipped tooltipped-s' aria-label={isFilesWithoutCommentsHidden ? 'Show all files' : 'Show only unresolved comments'}>
+            <svg className='github-pr-file-comment octicon octicon-comment text-gray' viewBox='0 0 16 16' width='16' height='16' aria-hidden='true'>
+              <path fillRule='evenodd' d='M14 1H2c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1h2v3.5L7.5 11H14c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 9H7l-2 2v-2H2V2h12v8z' />
+            </svg>
+          </span>
+        </button>
+      </div>
+
     </div>
   )
 }

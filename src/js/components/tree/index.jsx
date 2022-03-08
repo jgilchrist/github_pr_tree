@@ -17,6 +17,8 @@ class Tree extends React.Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleOnShowViewed = this.handleOnShowViewed.bind(this)
     this.handleOnHideViewed = this.handleOnHideViewed.bind(this)
+    this.handleShowFilesWithoutComments = this.handleShowFilesWithoutComments.bind(this)
+    this.handleHideFilesWithoutComments = this.handleHideFilesWithoutComments.bind(this)
     this.onScroll = this.onScroll.bind(this)
     this.onResizerMouseDown = this.onResizerMouseDown.bind(this)
     this.onMouseMove = this.onMouseMove.bind(this)
@@ -43,7 +45,8 @@ class Tree extends React.Component {
       visibleElement: null,
       filter: '',
       options: {},
-      hideViewed: false
+      hideViewed: false,
+      hideFilesWithoutComments: false
     }
   }
 
@@ -148,6 +151,14 @@ class Tree extends React.Component {
     this.setState({ hideViewed: true })
   }
 
+  handleShowFilesWithoutComments () {
+    this.setState({ hideFilesWithoutComments: false })
+  }
+
+  handleHideFilesWithoutComments () {
+    this.setState({ hideFilesWithoutComments: true })
+  }
+
   handleFullWidth () {
     const fullScreenState = document.querySelector('body').classList.toggle('full-width')
     window.localStorage.setItem(fullScreenStorageKey, fullScreenState)
@@ -185,7 +196,7 @@ class Tree extends React.Component {
   }
 
   render () {
-    const { filter, show, visibleElement, hideViewed } = this.state
+    const { filter, show, visibleElement, hideViewed, hideFilesWithoutComments } = this.state
 
     if (!show) {
       return null
@@ -205,12 +216,14 @@ class Tree extends React.Component {
           onReloadTree={this.handleOnReloadTree}
           onShowViewed={this.handleOnShowViewed}
           onHideViewed={this.handleOnHideViewed}
+          onShowFilesWithoutComments={this.handleShowFilesWithoutComments}
+          onHideFilesWithoutComments={this.handleHideFilesWithoutComments}
         />
         <div className='file-container'>
           <div>
             {filtered.list.map(node => (
               <span key={node.nodeLabel}>
-                {createTree({ ...node, visibleElement, filter, hideViewed })}
+                {createTree({ ...node, visibleElement, filter, hideViewed, hideFilesWithoutComments })}
               </span>
             ))}
           </div>

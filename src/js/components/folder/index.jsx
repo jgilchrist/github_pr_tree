@@ -32,7 +32,7 @@ class Folder extends React.Component {
   }
 
   render () {
-    const { children, nodeLabel, isViewed, fileCount, filter, hideViewed } = this.props
+    const { children, nodeLabel, isViewed, hasComments, fileCount, filter, hideViewed, hideFilesWithoutComments } = this.props
     const { options = {} } = this.state
 
     const topClassName = [
@@ -49,8 +49,10 @@ class Folder extends React.Component {
       </div>
     )
 
+    const shouldHide = (isViewed && hideViewed) || (!hasComments && hideFilesWithoutComments)
+
     return (
-      isViewed && hideViewed
+      shouldHide
         ? null
         : (
           <TreeView nodeLabel={display} defaultCollapsed={false}>
