@@ -54,7 +54,10 @@ const countCommentsForFileId = (fileId) => {
     return 0
   }
 
-  return diffTable.querySelectorAll('.inline-comments').length
+  const commentsForFile = diffTable.querySelectorAll('.inline-comments')
+  const resolvedComments = Array.prototype.slice.call(commentsForFile).filter(c => c.querySelectorAll('[data-resolved=true]').length === 0)
+
+  return resolvedComments.length
 }
 
 const isDeletedForFileId = (fileId) => {
