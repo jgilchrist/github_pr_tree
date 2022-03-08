@@ -147,13 +147,10 @@ export const createFileTree = (filter = EMPTY_FILTER) => {
               hasComments,
               isDeleted,
               diffElement,
-              fileCount: 1,
               diffStats: getDiffStatsForDiffElement(diffElement)
             }
             location.list.push(node)
           }
-        } else {
-          node.fileCount = (node.fileCount || 0) + 1
         }
         location.list = location.list.sort(sorter)
         location = node

@@ -37,7 +37,7 @@ class File extends React.Component {
   }
 
   render () {
-    const { name, href, hasComments, isDeleted, isVisible, diffStats, filter, isViewed, hideViewed, hideFilesWithoutComments } = this.props
+    const { name, href, hasComments, isDeleted, isVisible, diffStats, filter, isViewed, hidden } = this.props
     const { options = {} } = this.state
     const className = getClassWithColor(name)
     const topClassName = [
@@ -50,10 +50,8 @@ class File extends React.Component {
     const index = filter ? (name.toLowerCase() || '').indexOf(filter.toLowerCase()) : -1
     const highlightedName = (index === -1) ? name : this.getHighlight({ name, filter, index })
 
-    const shouldHide = (isViewed && hideViewed) || (!hasComments && hideFilesWithoutComments)
-
     return (
-      shouldHide
+      hidden
         ? null
         : (
           <div className={topClassName}>
